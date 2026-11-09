@@ -1,0 +1,179 @@
+---
+title: "Pertemuan 10 Komstat"
+author: "Steven"
+date: "2026-05-06"
+output: html_document
+---
+
+```{r }
+library(tidyverse)
+```
+
+
+```{r}
+tidyverse_packages()
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+tibble_karyawan <- tibble(
+  `nama karyawan` = c("Andi", "Budi", "Cici"),
+  gaji = c(5000000, 6000000, 5500000),
+  tunjangan = list(c(100, 200), 150, c(150, 250, 50))
+)
+tibble_karyawan
+```
+
+```{r}
+tibble_karyawan$gaji
+```
+
+
+```{r}
+
+library(nycflights13)
+flights
+```
+
+```{r}
+df_flights <- as.data.frame(flights)
+# menampilkan data teratas
+head(df_flights)
+```
+
+
+
+```{r}
+head(df_flights$y)
+```
+
+
+```{r}
+df_people <- data.frame(
+  id       = c(1, 2, 3, 4, 5),
+  name     = c("Adam", "Eva", "Miki", "Yola", "Jack"), 
+  age      = c(46, 48, 21, 19, 17), 
+  gender   = c("male", rep("female", 3), "male"), 
+  drives   = c(TRUE, TRUE, FALSE, TRUE, FALSE) 
+)
+library(tibble)
+tibble_people <- as_tibble(df_people)
+tibble_people
+```
+
+
+
+```{r}
+summary(tibble_people)
+```
+
+
+```{r}
+glimpse(tibble_people)
+```
+
+
+```{r}
+tibble_people$gender <- factor(tibble_people$gender)
+summary(tibble_people)
+```
+
+
+
+```{r}
+tibble_people[ ,2]
+```
+
+
+
+```{r}
+tibble_people[tibble_people$age < 30, ]
+```
+
+
+
+```{r}
+penjualankoma <- read_csv("C:/Users/ASUS/Downloads/penjualan.csv")
+penjualankoma
+```
+
+
+```{r}
+penjualantitikoma <- read_csv2("C:/Users/ASUS/Downloads/penjualan.csv")
+```
+
+
+
+```{r}
+penjualantitikoma
+```
+
+
+
+```{r}
+penjualantxtab <- read_tsv("C:/Users/ASUS/Downloads/penjualan.csv")
+```
+
+
+
+
+```{r}
+penjualantxtab
+```
+
+
+
+```{r}
+penjualantxtsep <- read_delim("C:/Users/ASUS/Downloads/penjualan.csv", delim='|')
+```
+
+
+
+```{r}
+penjualantxtsep
+```
+
+
+
+```{r}
+penjualanreadelimkoma <- read_delim("C:/Users/ASUS/Downloads/penjualan.csv", delim=',')
+```
+
+
+
+```{r}
+penjualanreadelimkoma
+```
+
+
+
+```{r}
+penjualanreadelimtab <- read_delim("C:/Users/ASUS/Downloads/penjualan.csv", delim='\t')
+```
+
+
+
+```{r}
+penjualanreadelimtab
+```
+
+
+
+# Definisikan alamat folder tujuan menyimpan agar tidak mengetik ulang, misalkan saya ada folder
+path_tujuan <- "C:/Users/ASUS/Downloads/"
+
+# mengeksport tibble ke csv dengan separator koma
+write_csv(tibble_karyawan, paste0(path_tujuan, 'tibble_karyawancobakoma.csv'))
+
+# mengeksport tibble ke csv dengan separator titik koma
+write_csv2(tibble_karyawan, paste0(path_tujuan, 'tibble_karyawancobatitikkoma.csv'))
+
+# mengeksport tibble ke txt dengan separator spasi
+write_delim(tibble_karyawan, paste0(path_tujuan, 'tibble_karyawancobaspasi.txt'), delim=' ')
+
+# mengeksport tibble ke txt dengan separator tab
+write_tsv(tibble_karyawan, paste0(path_tujuan, 'tibble_karyawancobatab.txt'))
+
